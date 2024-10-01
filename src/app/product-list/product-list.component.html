@@ -1,0 +1,11 @@
+<p>product-list works!</p>
+
+<ul>
+  @for (product of products(); track product.id) {
+    <li>{{ product.name }} | {{ product.price }}</li>
+  } @empty {
+    <li>No items</li>
+  }
+</ul>
+
+<h2>Total price: {{ totalPrice() }}</h2>

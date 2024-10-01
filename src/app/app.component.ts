@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { CounterComponent } from './counter/counter.component';
-import { Component, computed, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ProductListComponent } from './product-list/product-list.component';
+import { Product } from './models/product';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CounterComponent, CommonModule],
+  imports: [RouterOutlet, CounterComponent, CommonModule, ProductListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  products = signal([
+  allProducts: Product[] = [
     {
       id: 1,
       name: 'Milk',
@@ -27,17 +29,5 @@ export class AppComponent {
       name: 'Eggs',
       price: 10,
     },
-  ]);
-
-  filterName = signal('');
-
-  filteredProducts = computed(() => {
-    return this.products().filter((product) =>
-      product.name.toLowerCase().includes(this.filterName().toLowerCase()),
-    );
-  });
-
-  onInput(e: Event) {
-    this.filterName.set((e?.target as HTMLInputElement).value);
-  }
+  ];
 }
