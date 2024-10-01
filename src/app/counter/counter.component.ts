@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class CounterComponent {
   price = 19;
+
+  quantity = signal(10);
+
+  totalPrice = computed(() => this.price * this.quantity());
+
+  changeQuantity(event: Event) {
+    this.quantity.set((event?.target as HTMLInputElement).valueAsNumber);
+  }
 }

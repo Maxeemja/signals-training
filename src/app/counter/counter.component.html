@@ -1,1 +1,5 @@
-<p>counter works!</p>
+<p>{{ price }} / {{ quantity() }}</p>
+
+<p>{{ totalPrice() }}</p>
+
+<input type="number" [value]="quantity()" (input)="changeQuantity($event)" />
