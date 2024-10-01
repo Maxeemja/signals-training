@@ -1,8 +1,11 @@
 <h1>LABEL</h1>
 
-<h2>{{ label }}</h2>
-<button (click)="toggleDarkMode()">Toggle</button>
+<input type="text" [value]="filterName()" (input)="onInput($event)" />
 
-<p></p>
-
-<app-counter></app-counter>
+<ul>
+  @for (product of filteredProducts(); track product.id) {
+    <li>{{ product.name }} | {{ product.price }}</li>
+  } @empty {
+    <li>No products found.</li>
+  }
+</ul>
